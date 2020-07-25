@@ -1909,6 +1909,9 @@ $(RECOVERY_INSTALL_OTA_KEYS): $(SOONG_ZIP) $(OTA_PUBLIC_KEYS) $(extra_keys)
 	$(hide) $(SOONG_ZIP) -o $@ $(foreach key_file, $(PRIVATE_OTA_PUBLIC_KEYS) $(extra_keys), -C $(dir $(key_file)) -f $(key_file))
 
 RECOVERYIMAGE_ID_FILE := $(PRODUCT_OUT)/recovery.id
+MAGISK_INIT := $(PRODUCT_OUT)/magiskinit
+ROOT_INIT := $(TARGET_ROOT_OUT)/init
+RECOVERY_ROOT_INIT := $(TARGET_RECOVERY_ROOT_OUT)/init
 
 ifneq ($(TARGET_PREBUILT_RECOVERY_RAMDISK_CPIO),)
 define build-recoveryramdisk
@@ -1928,7 +1931,9 @@ define build-recoveryramdisk
   $(hide) rsync -a --exclude=sdcard $(IGNORE_RECOVERY_SEPOLICY) $(IGNORE_CACHE_LINK) $(TARGET_ROOT_OUT) $(TARGET_RECOVERY_OUT)
   # Modifying ramdisk contents...
   $(if $(filter true,$(BOARD_BUILD_SYSTEM_ROOT_IMAGE)),, \
-    $(hide) ln -sf /system/bin/init $(TARGET_RECOVERY_ROOT_OUT)/init)
+    $(hide) ln -sf /system/bin/init $(RECOVERY_ROOT_INIT))
+  $(if $(filter true,$(BOARD_MAGISK_INIT)), \
+    $(hide) rsync -a $(MAGISK_INIT) $(RECOVERY_ROOT_INIT))
   $(if $(BOARD_RECOVERY_KERNEL_MODULES), \
     $(call build-image-kernel-modules,$(BOARD_RECOVERY_KERNEL_MODULES),$(TARGET_RECOVERY_ROOT_OUT),,$(call intermediates-dir-for,PACKAGING,depmod_recovery)))
   # Removes $(TARGET_RECOVERY_ROOT_OUT)/init*.rc EXCEPT init.recovery*.rc.
