@@ -23,6 +23,29 @@ echo "ro.build.user=$BUILD_USERNAME"
 echo "ro.build.host=$BUILD_HOSTNAME"
 echo "ro.build.tags=$BUILD_VERSION_TAGS"
 echo "ro.build.flavor=$TARGET_BUILD_FLAVOR"
+echo "ro.media.enc.jpeg.quality=100"
+echo "ro.media.dec.jpeg.memcap=8000000"
+echo "ro.media.enc.hprof.vid.bps=8000000"
+echo "ro.media.capture.maxres=8m"
+echo "ro.media.panorama.defres=3264×1840"
+echo "ro.media.panorama.frameres=1280×720"
+echo "ro.camcorder.videoModes=true"
+echo "ro.media.enc.hprof.vid.fps=65"
+echo "windowsmgr.max_events_per_sec=150"
+echo "ro.min_pointer_dur=8 ro.max.fling_velocity=12000"
+echo "ro.min.fling_velocity=8000"
+echo "ro.media.enc.jpeg.quality=100"
+echo "ro.config.hw_quickpoweron=true"
+echo "debug.sf.nobootanimation=1"
+echo "persist.sys.shutdown.mode=hibernate"
+echo "ro.config.hw_fast_dormancy=1"
+echo "ro.config.hw_menu_unlockscreen=false
+echo "persist.sys.use_dithering=0"
+echo "persist.sys.purgeable_assets=1
+echo "dalvik.vm.dexopt-flags=m=y
+echo "ro.mot.eri.losalert.delay=1000"
+
+
 if [ -n "$BOARD_BUILD_SYSTEM_ROOT_IMAGE" ] ; then
   echo "ro.build.system_root_image=$BOARD_BUILD_SYSTEM_ROOT_IMAGE"
 fi
