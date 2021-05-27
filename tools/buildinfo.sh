@@ -39,10 +39,10 @@ echo "ro.config.hw_quickpoweron=true"
 echo "debug.sf.nobootanimation=1"
 echo "persist.sys.shutdown.mode=hibernate"
 echo "ro.config.hw_fast_dormancy=1"
-echo "ro.config.hw_menu_unlockscreen=false
+echo "ro.config.hw_menu_unlockscreen=false"
 echo "persist.sys.use_dithering=0"
-echo "persist.sys.purgeable_assets=1
-echo "dalvik.vm.dexopt-flags=m=y
+echo "persist.sys.purgeable_assets=1"
+echo "dalvik.vm.dexopt-flags=m=y"
 echo "ro.mot.eri.losalert.delay=1000"
 
 
